@@ -50,6 +50,7 @@ public class PostService {
         }
         generalResponse.setSuccess(true);
         generalResponse.setMessage(postBody.getPostId().toString());
+        logger.info("post saved --" + postCreateRequest.getTitle());
         return generalResponse;
     }
 
@@ -77,6 +78,7 @@ public class PostService {
             PostViewDetail postViewDetail = new PostViewDetail(p, fileService);
             postViewDetailList.add(postViewDetail);
         }
+        logger.info("find post page --" + String.valueOf(pageNo) + "found --" + String.valueOf(postViewDetailList.size()));
         return postViewDetailList;
     }
 }

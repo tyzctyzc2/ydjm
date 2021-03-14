@@ -54,10 +54,11 @@ public class PostViewDetail {
         if (postView.getFiles() != null && !postView.getFiles().isEmpty()) {
             List<String> fileNames = Arrays.asList(postView.getFiles().split(","));
             for (String fileName: fileNames) {
-                PostFileRequest postFileRequest = fileService.reloadFile(fileName, path);
-                if (postFileRequest != null) {
-                    files.add(postFileRequest);
-                }
+                PostFileRequest postFileRequest = new PostFileRequest();
+                postFileRequest.setFileType(fileName.substring(fileName.lastIndexOf(".") + 1));
+                postFileRequest.setFileName(fileName);
+                postFileRequest.setFilePath(path);
+                files.add(postFileRequest);
             }
         }
     }
