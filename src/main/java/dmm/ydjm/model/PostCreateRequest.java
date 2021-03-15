@@ -23,7 +23,7 @@ public class PostCreateRequest {
     private List<PostFileRequest> files = new ArrayList<>();
 
     @JsonProperty("tags")
-    private List<PostTagRequest> tags = new ArrayList<>();
+    private List<TagRequest> tags = new ArrayList<>();
 
     public String getTitle() {
         return title;
@@ -49,11 +49,11 @@ public class PostCreateRequest {
         this.files = files;
     }
 
-    public List<PostTagRequest> getTags() {
+    public List<TagRequest> getTags() {
         return tags;
     }
 
-    public void setTags(List<PostTagRequest> tags) {
+    public void setTags(List<TagRequest> tags) {
         this.tags = tags;
     }
 }

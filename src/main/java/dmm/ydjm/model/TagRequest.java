@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "tagId",
         "tagName"
 })
-public class PostTagRequest {
+public class TagRequest {
     @JsonProperty("tagId")
     private Integer tagId = 0;
 

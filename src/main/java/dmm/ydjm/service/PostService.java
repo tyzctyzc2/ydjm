@@ -45,8 +45,8 @@ public class PostService {
             fileService.saveFile(postFileRequest, postBody);
         }
 
-        for (PostTagRequest postTagRequest: postCreateRequest.getTags()) {
-            savePostTag(postBody, postTagRequest);
+        for (TagRequest tagRequest : postCreateRequest.getTags()) {
+            savePostTag(postBody, tagRequest);
         }
         generalResponse.setSuccess(true);
         generalResponse.setMessage(postBody.getPostId().toString());
@@ -54,13 +54,13 @@ public class PostService {
         return generalResponse;
     }
 
-    private void savePostTag(PostBody postBody, PostTagRequest postTagRequest) {
+    private void savePostTag(PostBody postBody, TagRequest tagRequest) {
         TagDefinition tagDefinition;
-        if (postTagRequest.getTagId() > 0) {
-            tagDefinition = tagDefinitionRepository.getOne(postTagRequest.getTagId());
+        if (tagRequest.getTagId() > 0) {
+            tagDefinition = tagDefinitionRepository.getOne(tagRequest.getTagId());
         } else {
             tagDefinition = new TagDefinition();
-            tagDefinition.setTagName(postTagRequest.getTagName());
+            tagDefinition.setTagName(tagRequest.getTagName());
             tagDefinitionRepository.save(tagDefinition);
         }
 
