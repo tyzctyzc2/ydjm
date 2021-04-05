@@ -32,4 +32,11 @@ public class TagService {
         }
         return tagJSON;
     }
+
+    public int createNewTag(String tagName) {
+        TagDefinition tagDefinition = new TagDefinition();
+        tagDefinition.setTagName(tagName);
+        tagDefinitionRepository.save(tagDefinition);
+        return tagDefinition.getTagId();
+    }
 }

@@ -1,12 +1,10 @@
 package dmm.ydjm.controller;
 
+import dmm.ydjm.model.GeneralResponse;
 import dmm.ydjm.model.TagRequest;
 import dmm.ydjm.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,4 +17,13 @@ public class TagController {
 
     @GetMapping(path = "/list", produces = "application/json;charset=UTF-8")
     public List<TagRequest> getAllTagList() { return tagService.getAllTags(); }
+
+    @PostMapping(path = "/create", consumes = "application/json", produces = "application/json;charset=UTF-8")
+    public GeneralResponse createNewTag(@RequestBody TagRequest tagRequest) {
+        int tagId = tagService.createNewTag(tagRequest.getTagName());
+        GeneralResponse generalResponse = new GeneralResponse();
+        generalResponse.setSuccess(true);
+        generalResponse.setMessage(String.valueOf(tagId));
+        return generalResponse;
+    }
 }
