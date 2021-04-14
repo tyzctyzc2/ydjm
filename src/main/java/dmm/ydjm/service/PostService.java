@@ -30,6 +30,8 @@ public class PostService {
     @Autowired
     private  FileService fileService;
 
+    int pageSize = 10;
+
     public GeneralResponse createNewPost(PostCreateRequest postCreateRequest) {
         GeneralResponse generalResponse = new GeneralResponse();
         PostBody postBody = new PostBody(postCreateRequest);
@@ -71,7 +73,7 @@ public class PostService {
     }
 
     public List<PostViewDetail> findPostPage(int pageNo) {
-        PageRequest pageable = PageRequest.of( pageNo , 10);
+        PageRequest pageable = PageRequest.of( pageNo , pageSize);
         Page<PostView> postViewPage = postViewRepository.findAll(pageable);
         List<PostViewDetail> postViewDetailList = new ArrayList<>();
         for (PostView p: postViewPage.getContent()) {
@@ -79,6 +81,30 @@ public class PostService {
             postViewDetailList.add(postViewDetail);
         }
         logger.info("find post page --" + String.valueOf(pageNo) + "found --" + String.valueOf(postViewDetailList.size()));
+        return postViewDetailList;
+    }
+
+    public List<PostViewDetail> findKeywordPostPage(String keyword, int pageNo) {
+        PageRequest pageable = PageRequest.of( pageNo , pageSize);
+        Page<PostView> findPV = postViewRepository.findByKeyword("%" + keyword + "%", pageable);
+        List<PostViewDetail> postViewDetailList = new ArrayList<>();
+        for (PostView p: findPV.getContent()) {
+            PostViewDetail postViewDetail = new PostViewDetail(p, fileService);
+            postViewDetailList.add(postViewDetail);
+        }
+        logger.info("find post page --" + keyword + "found --" + String.valueOf(postViewDetailList.size()));
+        return postViewDetailList;
+    }
+
+    public List<PostViewDetail> findTagPostPage(String tag, int pageNo) {
+        PageRequest pageable = PageRequest.of( pageNo , pageSize);
+        Page<PostView> findPV = postViewRepository.findByTag("%" + tag + "%", pageable);
+        List<PostViewDetail> postViewDetailList = new ArrayList<>();
+        for (PostView p: findPV.getContent()) {
+            PostViewDetail postViewDetail = new PostViewDetail(p, fileService);
+            postViewDetailList.add(postViewDetail);
+        }
+        logger.info("find by tag post page --" + tag + "found --" + String.valueOf(postViewDetailList.size()));
         return postViewDetailList;
     }
 }

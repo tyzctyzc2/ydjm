@@ -25,4 +25,14 @@ public class PostController {
     public List<PostViewDetail> getPostList(@RequestParam int page) {
         return postService.findPostPage(page);
     }
+
+    @GetMapping(path = "/list/find", produces = "application/json;charset=UTF-8")
+    public List<PostViewDetail> getPostListByKeyword(@RequestParam String keyword, int page) {
+        return postService.findKeywordPostPage(keyword, page);
+    }
+
+    @GetMapping(path = "/list/tag", produces = "application/json;charset=UTF-8")
+    public List<PostViewDetail> getPostListByTag(@RequestParam String tag, int page) {
+        return postService.findTagPostPage(tag, page);
+    }
 }
