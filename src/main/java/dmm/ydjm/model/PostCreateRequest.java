@@ -7,12 +7,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 @JsonPropertyOrder({
+        "postId",
         "title",
         "content",
         "files",
         "tags"
 })
 public class PostCreateRequest {
+    @JsonProperty("postId")
+    private Integer postId;
+
     @JsonProperty("title")
     private String title;
 
@@ -24,6 +28,14 @@ public class PostCreateRequest {
 
     @JsonProperty("tags")
     private List<TagRequest> tags = new ArrayList<>();
+
+    public Integer getPostId() {
+        return postId;
+    }
+
+    public void setPostId(Integer postId) {
+        this.postId = postId;
+    }
 
     public String getTitle() {
         return title;

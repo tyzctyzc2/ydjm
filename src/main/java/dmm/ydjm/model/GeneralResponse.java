@@ -5,7 +5,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonPropertyOrder({
         "success",
-        "message"
+        "message",
+        "id"
 })
 public class GeneralResponse {
     @JsonProperty("success")
@@ -13,6 +14,9 @@ public class GeneralResponse {
 
     @JsonProperty("message")
     private String message;
+
+    @JsonProperty("id")
+    private Integer id;
 
     public boolean isSuccess() {
         return success;
@@ -28,5 +32,13 @@ public class GeneralResponse {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

@@ -1,7 +1,9 @@
 package dmm.ydjm.service;
 
+import dmm.ydjm.model.GeneralResponse;
 import dmm.ydjm.model.PostFileRequest;
 import dmm.ydjm.repository.PostBody;
+import dmm.ydjm.repository.PostBodyRepository;
 import dmm.ydjm.repository.PostFile;
 import dmm.ydjm.repository.PostFileRepository;
 import org.slf4j.LoggerFactory;
@@ -9,12 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Base64;
 import java.util.Date;
+import java.util.Locale;
 
 @Service
 public class FileService {
@@ -22,6 +26,9 @@ public class FileService {
 
     @Autowired
     private Environment env;
+
+    @Autowired
+    private PostBodyRepository postBodyRepository;
 
     @Autowired
     private PostFileRepository postFileRepository;
@@ -59,6 +66,32 @@ public class FileService {
         postFileRepository.save(postFile);
 
         return true;
+    }
+
+    public GeneralResponse savePostMultipartFile(MultipartFile file, Integer postId) throws IOException {
+        GeneralResponse generalResponse = new GeneralResponse();
+        generalResponse.setSuccess(false);
+
+        PostBody postBody = postBodyRepository.getOne(postId);
+
+        PostFile postFile = new PostFile();
+        postFile.setFileType(file.getOriginalFilename().toLowerCase(Locale.ROOT).substring(file.getOriginalFilename().lastIndexOf(".") + 1));
+        postFile.setFilePath(getPathName());
+        postFile.setPostItem(postBody);
+        postFile.setFileName("wait");
+        postFileRepository.save(postFile);
+
+        if (!(postFile.getFileId() > 0)) {
+            return generalResponse;
+        }
+        postFile.setFileName(getFileName(postFile.getFileId(), postFile.getFileType()));
+        File newFile = new File(absolutePath + postFile.getFilePath() + "\\"+ postFile.getFileName());
+        file.transferTo(newFile);
+
+        postFileRepository.save(postFile);
+
+        generalResponse.setSuccess(true);
+        return generalResponse;
     }
 
     private String getPathName() {

@@ -21,6 +21,11 @@ public class PostController {
         return postService.createNewPost(createRequest);
     }
 
+    @PostMapping(path = "/update", consumes = "application/json", produces = "application/json")
+    public GeneralResponse updatePostTag(@RequestBody PostCreateRequest createRequest) {
+        return postService.updatePostTags(createRequest);
+    }
+
     @GetMapping(path = "/list", produces = "application/json;charset=UTF-8")
     public List<PostViewDetail> getPostList(@RequestParam int page) {
         return postService.findPostPage(page);

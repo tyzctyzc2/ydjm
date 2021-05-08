@@ -34,6 +34,7 @@ public class PostService {
 
     public GeneralResponse createNewPost(PostCreateRequest postCreateRequest) {
         GeneralResponse generalResponse = new GeneralResponse();
+        generalResponse.setId(0);
         PostBody postBody = new PostBody(postCreateRequest);
         postBodyRepository.save(postBody);
         if (!(postBody.getPostId() > 0)) {
@@ -52,7 +53,19 @@ public class PostService {
         }
         generalResponse.setSuccess(true);
         generalResponse.setMessage(postBody.getPostId().toString());
+        generalResponse.setId(postBody.getPostId());
         logger.info("post saved --" + postCreateRequest.getTitle());
+        return generalResponse;
+    }
+
+    public GeneralResponse updatePostTags(PostCreateRequest postCreateRequest) {
+        GeneralResponse generalResponse = new GeneralResponse();
+        PostBody postBody = postBodyRepository.getOne(postCreateRequest.getPostId());
+        if (postBody == null) {
+            generalResponse.setSuccess(false);
+            return generalResponse;
+        }
+        postTagRepository.deleteAllPostTag(postBody);
         return generalResponse;
     }
 

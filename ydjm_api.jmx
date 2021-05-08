@@ -34,13 +34,13 @@
           <stringProp name="HTTPSampler.port">808</stringProp>
           <stringProp name="HTTPSampler.protocol"></stringProp>
           <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
-          <stringProp name="HTTPSampler.path"></stringProp>
+          <stringProp name="HTTPSampler.path">/ydjm</stringProp>
           <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
           <stringProp name="HTTPSampler.connect_timeout"></stringProp>
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
         </ConfigTestElement>
         <hashTree/>
-        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="json header" enabled="true">
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="json header" enabled="false">
           <collectionProp name="HeaderManager.headers">
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">Content-Type</stringProp>
@@ -81,15 +81,84 @@
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
         </HTTPSamplerProxy>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="get post【 list】 page 0" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="update post" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+	&quot;postId&quot;:48,&#xd;
+	&quot;title&quot;: &quot;软糖二五&quot;,&#xd;
+	&quot;content&quot;: &quot;今天的框架也\n\r    是诺丁&quot;,&#xd;
+	&quot;tags&quot;: [{&quot;tagId&quot;:0, &quot;tagName&quot;:&quot;中文&quot;}, {&quot;tagId&quot;:0, &quot;tagName&quot;:&quot;确定&quot;}],&#xd;
+	&quot;files&quot;: [{&quot;fileType&quot;:&quot;txt&quot;, &quot;fileBody&quot;:&quot;bXlzcWwgZGINCg0KIyBNeVNRTCBEQVRBIFNPVVJDRQ0Kc3ByaW5nLmRhdGFzb3VyY2UudXJsPWpkYmM6bXlzcWw6Ly8xOTIuMTY4LjU2LjEyMDozMzA2L3lkam0NCnNwcmluZy5kYXRhc291cmNlLnVzZXJuYW1lPWhoDQpzcHJpbmcuZGF0YXNvdXJjZS5wYXNzd29yZD0xMjM0DQoNCiMgSGliZXJuYXRlDQpzcHJpbmcuZGF0YXNvdXJjZS5kcml2ZXItY2xhc3MtbmFtZT1jb20ubXlzcWwuY2ouamRiYy5Ecml2ZXINCnNwcmluZy5qcGEuZGF0YWJhc2UtcGxhdGZvcm09b3JnLmhpYmVybmF0ZS5kaWFsZWN0Lk15U1FMNTdJbm5vREJEaWFsZWN0DQpzcHJpbmcuanBhLmhpYmVybmF0ZS5kZGwtYXV0bz1jcmVhdGUtZHJvcA0Kc3ByaW5nLmpwYS5wcm9wZXJ0aWVzLmhpYmVybmF0ZS5kaWFsZWN0ID0gb3JnLmhpYmVybmF0ZS5kaWFsZWN0Lk15U1FMOERpYWxlY3QNCg0Kc2VydmVyLnBvcnQ9ODg4DQoNCuaJk+WNsHNxbOivreWPpeivt+WKoA0Kc3ByaW5nLmpwYS5zaG93LXNxbD10cnVlDQrmoLzlvI/ljJbmiZPljbDnmoTor63lj6UNCg0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCuazqOaEj+aWueiogOi/meS4qumFjee9ru+8jOWmguaenOS4jeWvueeahOivneWwseS8muWcqOWIm+W7uuihqOeahOaXtuWAmeWHuueOsOWQhOenjeivreazlemUmeivrw0Kc3ByaW5nLmpwYS5wcm9wZXJ0aWVzLmhpYmVybmF0ZS5kaWFsZWN0ID0gb3JnLmhpYmVybmF0ZS5kaWFsZWN0Lk15U1FMOERpYWxlY3QNCg0K6ICM6L+Z5Liq5Yib5bu65Y+C5pWw6KaB5pivdXBkYXRl77yM5LmL5YmN55qEY3JlYXRlLWRyb3Dlj6rmnInpppbmrKHog73liJvlu7rvvIzmm7TmlrDnmoTml7blgJnkvJrmnInpl67popgNCnNwcmluZy5qcGEuaGliZXJuYXRlLmRkbC1hdXRvPXVwZGF0ZQ0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KDQrmg7PopoHlhbPogZTlhbbku5bnmoTooajvvIzpgqPkuYjov5nkuKrliJfnmoTlrprkuYnmmK8NCkBNYW55VG9PbmUgKGNhc2NhZGU9Q2FzY2FkZVR5cGUuQUxMKQ0KQEpvaW5Db2x1bW4obmFtZT0icG9zdGlkIikNCnByaXZhdGUgUG9zdEl0ZW0gcG9zdEl0ZW07DQoNCui/meS4quWQjuadpeWtmOaVsOaNrueahOaXtuWAmeS8muWHuumUmQ0Kb3JnLnNwcmluZ2ZyYW1ld29yay5kYW8uSW52YWxpZERhdGFBY2Nlc3NBcGlVc2FnZUV4Y2VwdGlvbjogZGV0YWNoZWQgZW50aXR5IHBhc3NlZCB0byBwZXJzaXN0OiBkbW0ueHl6YnMucmVwb3NpdG9yeS5Qb3N0SXRlbTsgbmVzdGVkIGV4Y2VwdGlvbiBpcyBvcmcuaGliZXJuYXRlLlBlcnNpc3RlbnRPYmplY3RFeGNlcHRpb246IGRldGFjaGVkIGVudGl0eSBwYXNzZWQgdG8gcGVyc2lzdDogZG1tLnh5emJzLnJlcG9zaXRvcnkuUG9zdEl0ZW0NCuWQjuadpeWPkeeOsOi/meS4quS4jeiDveeUqEFMTO+8jOimgeeUqOS4i+mdoui/meS4qg0KDQpATWFueVRvT25lIChjYXNjYWRlPUNhc2NhZGVUeXBlLk1FUkdFKQ0KDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCg0K5Y+q5pyJ5pS+5Zyo6L+Z5Liq6Lev5b6E5LiL55qEY2xhc3PmiY3og73liJvlu7rlr7nlupTnmoTooagNCkQ6XE15VGVzdENvZGVcc3ByaW5nXHh5emJzXHNyY1xtYWluXGphdmFcZG1tXHh5emJzXHJlcG9zaXRvcnkNCuW6lOW9k+WPr+S7pemFjee9rg0KDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCuWcqOi/meS4qui3r+W+hOS4i+aUvue9rnRlc3TnmoTphY3nva7mlofku7YNCkQ6XE15VGVzdENvZGVcc3ByaW5nXHh5emJzXHNyY1x0ZXN0XHJlc291cmNlcw0K5ZyodGVzdOeahGNsYXNz5LiK6Z2i5YqgDQpAQWN0aXZlUHJvZmlsZXMoInRlc3QiKQ0KDQrigJTigJTigJTigJTigJTigJTigJTigJTigJTigJTigJTigJTigJTigJTigJTigJTigJTigJTigJTigJTigJTigJTigJTigJTigJTigJTigJTigJTigJTigJTigJTigJTigJTigJTigJTigJTigJTigJTigJTigJTigJTigJTigJTigJTigJTigJTigJTigJTigJTigJQNCg==&quot;}, {&quot;fileType&quot;:&quot;png&quot;, &quot;fileBody&quot;:&quot;iVBORw0KGgoAAAANSUhEUgAAABEAAAAPCAIAAACN07NGAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADUSURBVDhPlZIxEoIwEEXVI3AXvB0WeAA8RaQjVkInlKSTUuiwJI6jA61fdxXQwMibzPA2ySewk/n1dp9NZMHPKYxlTnmOwUWHsYwvhC+2XHQYzMSHWOuL1hrCU2/Mmbquoygih6AkJ8wZKWXTNOQQlOSEIVOWZ5UqiLfxMCAoMflafGLIyKD3VmInA7bfTJYdi8LQ3zwvsET+fQ/Wrot2cdHHsixn5UB654T7sBv4/A+BvmMDpM1UlU6ShIsBsAHb2m8TQlC7xrGXNp+De/VPAKhUPQBmNXUglRyqZwAAAABJRU5ErkJggg==&quot;}]&#xd;
+}&#xd;
+</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
+          <stringProp name="HTTPSampler.path">api/post/update</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="upload file" enabled="true">
+          <elementProp name="HTTPsampler.Files" elementType="HTTPFileArgs">
+            <collectionProp name="HTTPFileArgs.files">
+              <elementProp name="C:\hh\IMG_0047.MOV" elementType="HTTPFileArg">
+                <stringProp name="File.path">C:\hh\IMG_0047.MOV</stringProp>
+                <stringProp name="File.paramname">file</stringProp>
+                <stringProp name="File.mimetype">multipart/form-data</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-            <collectionProp name="Arguments.arguments"/>
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="postid" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">58</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">postid</stringProp>
+              </elementProp>
+            </collectionProp>
           </elementProp>
           <stringProp name="HTTPSampler.domain">localhost</stringProp>
           <stringProp name="HTTPSampler.port">808</stringProp>
           <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">api/file/new</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="get post【 list】 page 0" enabled="false">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
           <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
-          <stringProp name="HTTPSampler.path">api/post/list?page=0</stringProp>
+          <stringProp name="HTTPSampler.path">/api/post/list?page=0</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -100,7 +169,7 @@
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
         </HTTPSamplerProxy>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="get post 【find】 page 0" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="get post 【find】 page 0" enabled="false">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
@@ -119,7 +188,7 @@
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
         </HTTPSamplerProxy>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="get post 【tag】 page 0" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="get post 【tag】 page 0" enabled="false">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
@@ -138,7 +207,7 @@
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
         </HTTPSamplerProxy>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="get all tag list" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="get all tag list" enabled="false">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
@@ -146,7 +215,7 @@
           <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.protocol"></stringProp>
           <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
-          <stringProp name="HTTPSampler.path">api/tag/list</stringProp>
+          <stringProp name="HTTPSampler.path">ydjm/api/tag/list</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
