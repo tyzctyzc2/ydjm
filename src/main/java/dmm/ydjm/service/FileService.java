@@ -49,8 +49,8 @@ public class FileService {
 
     public boolean saveFile(PostFileRequest postFileRequest, PostBody postBody) {
         PostFile postFile = new PostFile();
-        postFile.setFileType(postFileRequest.getFileType());
-        postFile.setFilePath(getPathName());
+        postFile.setFileType(postFileRequest.getFileType().toLowerCase());
+        postFile.setFilePath(getPathName().toLowerCase());
         postFile.setPostItem(postBody);
         postFile.setFileName("wait");
         postFileRepository.save(postFile);
@@ -59,7 +59,7 @@ public class FileService {
             return false;
         }
 
-        postFile.setFileName(getFileName(postFile.getFileId(), postFile.getFileType()));
+        postFile.setFileName(getFileName(postFile.getFileId(), postFile.getFileType()).toLowerCase());
 
         saveBase64File(postFileRequest.getFileBody(), postFile.getFilePath() + "\\"+ postFile.getFileName());
 
@@ -76,7 +76,7 @@ public class FileService {
 
         PostFile postFile = new PostFile();
         postFile.setFileType(file.getOriginalFilename().toLowerCase(Locale.ROOT).substring(file.getOriginalFilename().lastIndexOf(".") + 1));
-        postFile.setFilePath(getPathName());
+        postFile.setFilePath(getPathName().toLowerCase());
         postFile.setPostItem(postBody);
         postFile.setFileName("wait");
         postFileRepository.save(postFile);
@@ -84,7 +84,7 @@ public class FileService {
         if (!(postFile.getFileId() > 0)) {
             return generalResponse;
         }
-        postFile.setFileName(getFileName(postFile.getFileId(), postFile.getFileType()));
+        postFile.setFileName(getFileName(postFile.getFileId(), postFile.getFileType()).toLowerCase());
         File newFile = new File(absolutePath + postFile.getFilePath() + "\\"+ postFile.getFileName());
         file.transferTo(newFile);
 

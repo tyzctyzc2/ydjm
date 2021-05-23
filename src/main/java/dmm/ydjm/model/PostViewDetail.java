@@ -4,9 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import dmm.ydjm.repository.PostView;
 import dmm.ydjm.service.FileService;
-import org.springframework.data.domain.PageRequest;
+import io.swagger.annotations.ApiModelProperty;
 
-import javax.persistence.Column;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.LinkedList;

@@ -22,7 +22,7 @@ public class PostBody {
     @Column(name = "create_time", nullable = false, updatable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Date createTime;
 
-    public PostBody() {};
+    public PostBody() {}
 
     public PostBody(PostCreateRequest postCreateRequest) {
         this.setTitle(postCreateRequest.getTitle());

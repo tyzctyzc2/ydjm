@@ -66,6 +66,10 @@ public class PostService {
             return generalResponse;
         }
         postTagRepository.deleteAllPostTag(postBody);
+        for (TagRequest tagRequest : postCreateRequest.getTags()) {
+            savePostTag(postBody, tagRequest);
+        }
+        logger.info("tag update for post -- " + String.valueOf(postCreateRequest.getPostId()));
         return generalResponse;
     }
 
@@ -83,6 +87,12 @@ public class PostService {
         postTag.setPostBody(postBody);
         postTag.setTagDefinition(tagDefinition);
         postTagRepository.save(postTag);
+    }
+
+    public  PostViewDetail getPostDetail(int postId) {
+        PostView postView = postViewRepository.getOne(postId);
+        PostViewDetail postViewDetail = new PostViewDetail(postView, fileService);
+        return postViewDetail;
     }
 
     public List<PostViewDetail> findPostPage(int pageNo) {
